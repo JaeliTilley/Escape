@@ -1,0 +1,52 @@
+ESCAPE - Changes from the one-page design document
+====================================================
+
+Kept from the design
+--------------------
+- 2D top-down haunted house maze, one small house layout, one monster, three keys.
+- WASD movement, Space for the flashlight, Enter to start / pause / restart.
+- Exit door stays locked until all 3 keys are collected.
+- Start screen that explains the controls, game over screen, Enter to restart.
+- Walls block the player (physics colliders), and the monster moves around the house and chases the player.
+
+Changes
+-------
+1. Flashlight battery.
+   The design said the flashlight "has to load up." I made this a battery: it drains while Space is held
+   and recharges when released. If it runs completely empty, it locks out until it recharges to 35%.
+   This keeps the flashlight from being used constantly and makes timing it a real decision.
+
+2. Background music replaced with a gameplay-driven heartbeat.
+   The design listed "background creepy music." Instead, the only music-like sound is a heartbeat
+   that gets faster and louder the closer the monster is, so the audio tells the player how much
+   danger they are in.
+
+3. Hiding works through line of sight.
+   Instead of dedicated hiding spots, the monster can only see the player if no wall or furniture
+   is in the way. Ducking behind a bookshelf or around a doorway breaks its line of sight, and after
+   a few seconds it gives up and searches where it last saw the player. It can still hear the player
+   walking if they are very close.
+
+4. Monster gets more dangerous over time.
+   Each key collected makes the monster faster while chasing, so the game gets harder as the player
+   gets closer to escaping.
+
+5. Monster's eyes glow in the dark.
+   The player can only see a small area around themselves, so the monster's red eyes are drawn on top
+   of the darkness. This keeps the game fair while staying scary.
+
+6. Scoring system expanded.
+   The design said "escape with the highest score possible" without details. Score now comes from:
+   keys (+500 each), scaring the monster with the flashlight (+100 each), a time bonus for escaping
+   quickly, and a bonus for escaping with battery left. The best score is saved between sessions.
+
+7. Added feedback the design didn't mention.
+   - Bumping the locked exit shows how many keys are still missing.
+   - The exit door glows green once unlocked.
+   - "IT SEES YOU" warning while being chased, screen shake when caught.
+   - Keys come in gold, silver, and copper and appear on the HUD as they're collected.
+   - Flashlight battery bar on the HUD.
+
+8. Pathfinding.
+   The monster uses breadth-first search on the house grid so it moves through doorways and around
+   furniture instead of getting stuck on walls, which was one of the challenges listed in the design.
